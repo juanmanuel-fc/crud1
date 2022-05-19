@@ -8,59 +8,67 @@
 	<!-- /Header -->
 
 	<!-- product detail -->
+	<% product.forEach(item => { %>
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Detalle del producto: NOMBRE DEL PRODUCTO</h2>
+				<h2 class="products-title">Detalle del producto: <%= item.name %>  </h2>
 			</div>
 		</div>
+		
 		<div class="product-detail">
 			<div class="row">
 				<div class="col-12 col-lg-8">
-					<img src="/images/products/¿?" alt="product image" class="product-detail-img">
+					<img src="/images/products/<%= item.image %>" alt="product image" class="product-detail-img">
 					<p class="product-detail-description">
-						PRODUCT DESCRIPTION
+						<%= item.description %> 
 					</p>
 				</div>
 				<div class="col-12 col-lg-4">
 					<article class="product-detail-info">
-						<h2 class="product-detail-title">PRODUCT NAME</h2>
+						<h2 class="product-detail-title"> <%= item.name %>  </h2>
 						
 							<p class="product-detail-price small">
-								<span>$PRICE</span>
+								<span> $<%= item.price %> </span>
 								/
-								<b>DISCOUNT% OFF</b>
+								<b> <%= item.discount %>% OFF</b>
 							</p>
+							<!-- <p class="product-detail-price">
+								$<%= item.price %>
+							</p> -->
 							<p class="product-detail-price">
-								$FINAL PRICE
+								$<%= item.price - (item.price * item.discount /100) %>
 							</p>
-							<p class="product-detail-price">
-								$PRICE
-							</p>
-
-						<ul class="actions-list">
-							<li>
-								<i class="fas fa-credit-card"></i>
-								<p>Pagá en 12 cuotas sin interes</p>
-							</li>
-							<li>
-								<i class="fas fa-store"></i>
-								<p>Retiro gratis en locales del vendedor</p>
-							</li>
-						</ul>
-
-						<a href="#" class="buy-now-button">COMPRAR AHORA</a>
-						<hr>
-
-						<a href="/products/edit/¿?" class="action-button edit">EDITAR PRODUCTO</a>
-						<form action="/products/delete/¿¿" method="POST" style="display: inline-flex">
+							
+							<ul class="actions-list">
+								<li>
+									<i class="fas fa-credit-card"></i>
+									<p>Pagá en 12 cuotas sin interes</p>
+								</li>
+								<li>
+									<i class="fas fa-store"></i>
+									<p>Retiro gratis en locales del vendedor</p>
+								</li>
+							</ul>
+							
+							<a href="#" class="buy-now-button">COMPRAR AHORA</a>
+							<hr>
+							
+							<a href="/products/edit/¿?" class="action-button edit">EDITAR PRODUCTO</a>
+							<form action="/products/delete/¿¿" method="POST" style="display: inline-flex">
 							<button type="submit" class="action-button delete">ELIMINAR</button>
 						</form>
 					</article>
 				</div>
 			</div>
 		</div>
+		
+		
 	</div>
+	<% }) %>
+	
+	
+
 	<!-- /product detail -->
 
 	<!-- footer -->

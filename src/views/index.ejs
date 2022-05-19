@@ -24,7 +24,8 @@
 				<% products.forEach(product => { %>
 					<% if (product.category === "visited") { %> 
 					<section class="product-box">
-						<a href="/products/detail/<%= product.id %>">
+						<a href="/products/<%= product.id %>">
+						<!-- <a href="/products/detail/<%= product.id %>"> -->
 							<figure class="product-box_image">
 								<img src="/images/products/<%= product.image %>" alt="imagen de producto">
 							</figure>
@@ -58,7 +59,8 @@
 				<% products.forEach(product => { %>
 					<% if (product.category === "in-sale") { %> 
 					<section class="product-box">
-						<a href="/products/detail/<%= product.id %>">
+						<a href="/products/<%= product.id %>">
+						<!-- <a href="/products/detail/<%= product.id %>"> -->
 							<figure class="product-box_image">
 								<img src="/images/products/<%= product.image %>" alt="imagen de producto">
 							</figure>
