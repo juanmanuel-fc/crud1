@@ -5,9 +5,15 @@ const express = require('express');
 const logger = require('morgan');
 const path = require('path');
 const methodOverride =  require('method-override'); // Pasar poder usar los métodos PUT y DELETE
+const expressPort = 5000;
 
 // ************ express() - (don't touch) ************
 const app = express();
+
+// ************ start the server  ************
+app.listen(expressPort, () => {
+  console.log("Express running OK at port", expressPort);
+})
 
 // ************ Middlewares - (don't touch) ************
 app.use(express.static(path.join(__dirname, '../public')));  // Necesario para los archivos estáticos en el folder /public
@@ -26,10 +32,10 @@ app.set('views', path.join(__dirname, '/views')); // Define la ubicación de la 
 // ************ WRITE YOUR CODE FROM HERE ************
 // ************ Route System require and use() ************
 const mainRouter = require('./routes/main'); // Rutas main
-const productsRouter = require('./routes/products'); // Rutas /products
+// const productsRouter = require('./routes/products'); // Rutas /products
 
 app.use('/', mainRouter);
-app.use('/products', productsRouter);
+// app.use('/products', productsRouter);
 
 // comentario
 
