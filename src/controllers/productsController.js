@@ -11,17 +11,11 @@ const controller = {
 	// Root - Show all products
 	index: (req, res) => {
 
-		// const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
-		// const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-
 		res.render("products", {products: products})
 	},
 
 	// Detail - Detail from one product
 	detail: (req, res) => {
-
-		// const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
-		// const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 		const id = parseInt(req.params.id);
 				
@@ -41,9 +35,6 @@ const controller = {
 	
 	// Create -  Method to store
 	store: function (req, res) {
-
-		// const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
-		// const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 		// calculate the next id
 		let max = 0;
@@ -77,18 +68,71 @@ const controller = {
 	},
 
 	// // Update - Form to edit
-	// edit: (req, res) => {
-	// 	// Do the magic
-	// },
+	edit: (req, res) => {
+
+		const id = parseInt(req.params.id);
+
+		const foundProduct = products.filter( item => {
+
+			if ( item.id === id ) {
+				return id;
+			}
+
+		});
+
+		res.render("product-edit-form", {product: foundProduct});
+	},
+
+
 	// // Update - Method to update
-	// update: (req, res) => {
-	// 	// Do the magic
-	// },
+	update: (req, res) => {
+
+		// get the id to edit
+		const id = parseInt(req.params.id);
+
+		// var to store the index of products array where id is located
+		let editThisIndex = null;
+
+		// find the array index where the id is
+		products.forEach( (item, index) => {
+			if (item.id === id) {
+				editThisIndex = index;
+			}
+		});
+
+		// remove the index from the array
+		products.splice(editThisIndex, 1);
+		
+		// add a new element into the products array, with the info of 
+		let productoEditado = {
+			id: req.body.id,
+			name: req.body.name,
+			price: req.body.price,
+			discount: req.body.discount,
+			category: req.body.category,
+			description: req.body.description
+		};
+
+		products.splice(editThisIndex, 0, productoEditado);
+
+		// Esto está bien
+		const productoJSON = JSON.stringify(products, null, "\t");
+
+		fs.writeFileSync(productsFilePath, productoJSON);
+
+		// Esto está mal
+		// JSON.stringify(fs.writeFileSync(productsFilePath, products));
+
+		res.redirect("/");
+
+	},
 
 	// // Delete - Delete one product from DB
 	// destroy : (req, res) => {
 	// 	// Do the magic
 	// }
 };
+
+
 
 module.exports = controller;
