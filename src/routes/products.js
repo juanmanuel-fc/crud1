@@ -9,16 +9,17 @@ const productsController = require('../controllers/productsController');
 router.get('/', productsController.index); 
 
 /*** CREATE ONE PRODUCT ***/ 
-// router.???('/???/', productsController.create); 
-// router.???('/', productsController.store); 
+router.get('/create', productsController.create); 
+router.post('/create', productsController.store); 
+// poner la misma ruta 
 
 
 /*** GET ONE PRODUCT ***/ 
 router.get('/:id', productsController.detail); 
 
 /*** EDIT ONE PRODUCT ***/ 
-// router.???('/:id/???', productsController.edit); 
-// router.???('/:id', productsController.update); 
+// router.???('/products/:id/edit', productsController.edit); 
+// router.???('/products/:id', productsController.update); 
 
 
 /*** DELETE ONE PRODUCT***/ 
