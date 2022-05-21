@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>CONFIRMAR ELIMINACIÓN</title>
+		<!-- Font Awesome Stylesheet -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+		<!-- Bootstrap Grid Stylesheet -->
+		<link rel="stylesheet" href="/css/bootstrap-grid.min.css">
+		<!-- Own Stylesheet -->
+		<link rel="stylesheet" href="/css/app.css">
+		<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+	</head>
+
+<!-- Include Head -->
+<% deleteThis.forEach(item => { %>
+	
+<body>
+	<!-- Header -->
+	<%- include('partials/headerNavbar') %>
+	<!-- /Header -->
+
+	<!-- product detail -->
+	
+	
+	
+	
+		<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Confirmación elminación</h2>
+			</div>
+		</div>
+		
+		<div class="product-detail">
+			<div class="row">
+				<div class="col-12 col-lg-8">
+					<img src="/images/products/<%= item.image %>" alt="product image" class="product-detail-img">
+					
+						
+					</p>
+				</div>
+				<div class="col-12 col-lg-4">
+					<article class="product-detail-info">
+						<h2 class="product-detail-title">ATENCIÓN! <br> Si confirma la eliminación se borrará: <%= item.name %></h2>
+						<a href="/" class="action-button edit">Volver a la home</a>
+						
+							
+							
+							<!-- BE CAREFUL to ADD the missing "<" to %= item.id %> in the line below -->
+							<form action="/products/delete/<%= item.id %>?_method=DELETE" method="POST" style="display: inline-flex">
+								<button type="submit" class="action-button delete">CONFIRMAR ELIMINAR</button>
+							</form>
+
+					</article>
+				</div>
+			</div>
+		</div>
+		
+		
+	</div>
+	<% }) %>
+	
+	
+
+	<!-- /product detail -->
+
+	<!-- footer -->
+	<%- include('partials/footer') %>
+	<!-- /footer -->
+
+</body>	
+</html>

@@ -22,7 +22,8 @@ router.get('/edit/:id', productsController.edit);
 router.put('/edit/:id', productsController.update); 
 
 
-/*** DELETE ONE PRODUCT***/ 
+/*** DELETING PRODUCTS***/ 
+router.get('/confirm-delete/:id', productsController.confirmDelete);
 router.delete('/delete/:id', productsController.erase); 
 
 

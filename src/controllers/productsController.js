@@ -127,6 +127,25 @@ const controller = {
 
 	},
 
+	// Confirm the delete action
+	confirmDelete: (req, res) => {
+
+		const confirmDeleteId = parseInt(req.params.id);
+
+		// get the info of the product that will be deleted
+		const deleteThis = products.filter( item => {
+
+			if (confirmDeleteId === item.id ) {
+				return confirmDeleteId;
+			}
+
+		});
+		
+		res.render("confirm-delete", {deleteThis: deleteThis});
+
+	},
+
+
 	// // Delete - Delete one product from DB
 	erase: (req, res) => {
 		
