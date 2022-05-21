@@ -128,9 +128,32 @@ const controller = {
 	},
 
 	// // Delete - Delete one product from DB
-	// destroy : (req, res) => {
-	// 	// Do the magic
-	// }
+	erase: (req, res) => {
+		
+		// erase this id
+		const id = req.params.id;
+
+		// var to store the index of products array to be erased
+		let eraseThis = null;
+
+		// find the array index where the id is
+		products.forEach( (item, index) => {
+			if (item.id === id) {
+				eraseThis = index;
+			}
+		});
+
+		// remove the index from the array
+		products.splice(eraseThis, 1);
+
+		// write the changes to the JSON file
+		const productoJSON = JSON.stringify(products, null, "\t");
+		fs.writeFileSync(productsFilePath, productoJSON);
+
+		res.redirect("/products");
+
+
+	}
 };
 
 
